@@ -1,0 +1,23 @@
+# IntelliJ IDEA
+.idea/
+!.idea/codeStyles
+!.idea/inspectionProfiles
+*.iml
+
+# Ignorar arquivos específicos do projeto
+.idea/vcs.xml
+.idea/workspace.xml
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de build
+target/
+*.class
+*.log
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.bak
