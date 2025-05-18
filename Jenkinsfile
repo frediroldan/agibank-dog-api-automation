@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://seu-repositorio.git', branch: 'main'
+                git url: 'https://github.com/frediroldan/agibank-dog-api-automation.git', branch: 'main'
             }
         }
 
