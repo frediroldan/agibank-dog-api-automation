@@ -3,6 +3,7 @@
 #Autor: Fredi Roldan
 #Data: 15/05/2025
 
+@RandomImages @Regressivo
 Funcionalidade: Buscar múltiplas imagens aleatórias de cães
 
   #Display single random image

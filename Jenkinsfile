@@ -28,7 +28,7 @@ pipeline {
             stage('Publicar RelatÃ³rios') {
                 steps {
                     junit 'target/surefire-reports/*.xml'
-                    archiveArtifacts artifacts: 'target/cucumber-html-reports/**', fingerprint: true
+                    archiveArtifacts artifacts: 'target/cucumber-html-reports/*', fingerprint: true
                 }
             }
 

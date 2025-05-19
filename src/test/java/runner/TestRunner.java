@@ -12,6 +12,6 @@ import static io.cucumber.core.options.Constants.*;
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm")
 @ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelcase")
 // Para rodar por tags, defina aqui:
-@IncludeTags("BreedImages") // Troque "tag" pela tag desejada ao rodar
+@IncludeTags("Regressivo") // Troque "tag" pela tag desejada ao rodar
 public class TestRunner {
 }

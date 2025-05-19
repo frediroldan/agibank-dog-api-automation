@@ -3,6 +3,7 @@
 #Autor: Fredi Roldan
 #Data: 15/05/2025
 
+@ListAll @Regressivo
 Funcionalidade: Listar todas as raças
 
   Cenário: Validar retorno de todas as raças de cães da Dog API
