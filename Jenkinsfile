@@ -7,8 +7,7 @@ pipeline {
     }
 
     environment {
-        ALLURE_RESULTS = 'target/allure-results'
-        CUCUMBER_REPORT = 'target/cucumber-html-reports'
+        CUCUMBER_REPORT = '*/target/cucumber-html-reports'
     }
 
     stages {
@@ -44,20 +43,6 @@ pipeline {
                         echo "📄 Cucumber HTML report arquivado com sucesso!"
                     } else {
                         echo "⚠️ Relatório HTML não encontrado em: ${reportPath}"
-                    }
-                }
-            }
-        }
-
-        stage('Allure Report') {
-            steps {
-                script {
-                    def exists = fileExists(env.ALLURE_RESULTS)
-                    if (exists) {
-                        allure includeProperties: false, jdk: 'JDK-21', results: [[path: "${env.ALLURE_RESULTS}"]]
-                        echo "📊 Relatório Allure gerado com sucesso!"
-                    } else {
-                        echo "⚠️ Pasta de resultados Allure não encontrada: ${env.ALLURE_RESULTS}"
                     }
                 }
             }
