@@ -1,7 +1,7 @@
 
 # 🐶 Dog API Automation Project
 
-Este projeto realiza testes automatizados na [Dog API](https://dog.ceo/dog-api/documentation) usando **Java 11**, **Cucumber**, **JUnit 5**, **RestAssured**, **Allure** e **Jenkins**. Ele é capaz de validar endpoints REST, gerar relatórios de execução e ser executado em pipelines CI/CD.
+Este projeto realiza testes automatizados na [Dog API](https://dog.ceo/dog-api/documentation) usando **Java 21**, **Cucumber**, **JUnit 5**, **RestAssured**, e **Jenkins**. Ele é capaz de validar endpoints REST, gerar relatórios de execução e ser executado em pipelines CI/CD.
 
 ---
 
@@ -20,7 +20,7 @@ dog-api-automation/
 │
 ├── target/
 │   ├── cucumber-html-reports/ # Relatórios personalizados
-│   └── allure-results/        # Resultados Allure
+│   
 │
 ├── Jenkinsfile                # Pipeline declarativa CI/CD
 ├── pom.xml                    # Gerenciador de dependências Maven
@@ -74,7 +74,6 @@ public class TestRunner {}
 
 - `target/cucumber-report.html` → HTML padrão do Cucumber
 - `target/cucumber-html-reports/` → HTML customizado via Maven Plugin
-- `target/allure-report/` → Relatório interativo do Allure
 
 ---
 

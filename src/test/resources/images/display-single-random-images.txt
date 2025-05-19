@@ -47,3 +47,5 @@
 2025-05-19 00:57:04 - https://images.dog.ceo/breeds/setter-gordon/n02101006_1160.jpg
 2025-05-19 01:14:17 - https://images.dog.ceo/breeds/dhole/n02115913_1772.jpg
 2025-05-19 01:50:25 - https://images.dog.ceo/breeds/dachshund/Daschund_Wirehair.jpg
+2025-05-19 12:37:12 - https://images.dog.ceo/breeds/schipperke/n02104365_10071.jpg
+2025-05-19 12:45:03 - https://images.dog.ceo/breeds/australian-shepherd/pepper2.jpg

@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        CUCUMBER_REPORT = 'target/cucumber-html-reports'
+        CUCUMBER_REPORT = 'target'
     }
 
     stages {
@@ -39,7 +39,7 @@ pipeline {
                     def reportPath = "${env.CUCUMBER_REPORT}"
                     def exists = fileExists(reportPath)
                     if (exists) {
-                        archiveArtifacts artifacts: 'target/cucumber-html-reports/**', fingerprint: true
+                        archiveArtifacts artifacts: 'target/**', fingerprint: true
                         echo "📄 Cucumber HTML report arquivado com sucesso!"
                     } else {
                         echo "⚠️ Relatório HTML não encontrado em: ${reportPath}"
