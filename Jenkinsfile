@@ -26,10 +26,11 @@ pipeline {
         }
 
        stage('Publicar Relatórios') {
-                   steps {
-                       junit 'target/surefire-reports/*.xml'
-                   }
-               }
+            steps {
+                   junit 'target/surefire-reports/*.xml'
+                   archiveArtifacts artifacts: 'target/cucumber-report.html', fingerprint: true
+            }
+
        }
 
     post {

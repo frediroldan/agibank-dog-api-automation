@@ -67,6 +67,14 @@
       <artifactId>log4j-slf4j2-impl</artifactId>
       <version>2.20.0</version>
     </dependency>
+
+    <!-- Allure Cucumber Adapter -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>2.25.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
