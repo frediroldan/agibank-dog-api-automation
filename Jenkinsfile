@@ -17,9 +17,9 @@ pipeline {
                 steps {
                     script {
                         if (isUnix()) {
-                            sh 'mvn clean install'
+                            sh 'mvn clean verify'
                         } else {
-                            bat 'mvn clean install'
+                            bat 'mvn clean verify'
                         }
                     }
                 }
@@ -28,7 +28,7 @@ pipeline {
             stage('Publicar Relatórios') {
                 steps {
                     junit 'target/surefire-reports/*.xml'
-                    archiveArtifacts artifacts: 'target/cucumber-html-reports/*', fingerprint: true
+                    archiveArtifacts artifacts: 'target/cucumber-html-reports/**', fingerprint: true
                 }
             }
 

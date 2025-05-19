@@ -35,14 +35,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Suporte a Steps em Português -->
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-      <version>7.14.0</version>
-      <scope>test</scope>
-    </dependency>
-
     <!-- JUnit Platform Suite (opcional para organização de testes) -->
     <dependency>
       <groupId>org.junit.platform</groupId>
@@ -76,6 +68,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
   <plugins>
     <!-- Plugin para executar os testes -->
@@ -90,6 +83,7 @@
         </includes>
       </configuration>
     </plugin>
+
     <!-- Plugin para gerar o Allure Report -->
     <plugin>
       <groupId>io.qameta.allure</groupId>
