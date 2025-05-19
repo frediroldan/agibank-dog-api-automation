@@ -15,23 +15,28 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
         }
 
-        stage('Publicar Relatórios') {
-            steps {
-                cucumber buildStatus: 'UNSTABLE',
-                          fileIncludePattern: '**/cucumber.json'
-            }
+       stage('Publicar Relatórios') {
+                   steps {
+                       junit 'target/surefire-reports/*.xml'
+                       archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                   }
+               }
         }
-    }
 
     post {
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-            junit '**/target/surefire-reports/*.xml'
+            always {
+                echo 'Pipeline finalizada'
+            }
+            success {
+                echo '✅ Pipeline executada com sucesso!'
+            }
+            failure {
+                echo '❌ Falha na execução da pipeline.'
+            }
         }
-    }
 }
 
