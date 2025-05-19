@@ -44,4 +44,5 @@ pipeline {
                 echo '❌ Falha na execução da pipeline.'
             }
         }
+    }
 }
