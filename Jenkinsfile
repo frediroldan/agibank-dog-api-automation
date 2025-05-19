@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        CUCUMBER_REPORT = '*/target/cucumber-html-reports'
+        CUCUMBER_REPORT = 'target/cucumber-html-reports'
     }
 
     stages {
