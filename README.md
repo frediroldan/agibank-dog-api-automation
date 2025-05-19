@@ -1,136 +1,142 @@
 
-# 🐶 Projeto de Testes Automatizados da API Dog CEO
+# 🐶 Dog API Automation Project
 
-Este projeto implementa testes automatizados usando **Cucumber**, **Java**, **RestAssured** e **JUnit**, para validar o endpoint `/api/breeds/list/all` da [Dog CEO API](https://dog.ceo/dog-api/), que retorna todas as raças e sub-raças de cachorro disponíveis.
-
----
-
-## ✅ Objetivo
-
-Validar se a API retorna corretamente todas as raças de cachorro, incluindo sub-raças, comparando com uma lista previamente definida em um DataTable Gherkin.
+Este projeto realiza testes automatizados na [Dog API](https://dog.ceo/dog-api/documentation) usando **Java 11**, **Cucumber**, **JUnit 5**, **RestAssured**, **Allure** e **Jenkins**. Ele é capaz de validar endpoints REST, gerar relatórios de execução e ser executado em pipelines CI/CD.
 
 ---
 
-## 🧱 Tecnologias utilizadas
-
-- **Java 11+**
-- **Maven** (ou Gradle)
-- **JUnit 4 ou 5**
-- **Cucumber JVM**
-- **RestAssured**
-- **Hamcrest**
-
----
-
-## 📁 Estrutura de pastas
+## 📁 Estrutura do Projeto
 
 ```
-src
-├── test
-│   ├── java
-│   │   └── steps
-│   │       └── DogApiSteps.java
-│   └── resources
-│       └── features
-│           └── listar_racas.feature
+dog-api-automation/
+│
+├── src/
+│   └── test/
+│       ├── java/
+│       │   ├── runner/         # Classe TestRunner com JUnit 5 + tags
+│       │   └── steps/          # Step definitions Cucumber
+│       └── resources/
+│           └── features/       # Cenários BDD em Gherkin
+│
+├── target/
+│   ├── cucumber-html-reports/ # Relatórios personalizados
+│   └── allure-results/        # Resultados Allure
+│
+├── Jenkinsfile                # Pipeline declarativa CI/CD
+├── pom.xml                    # Gerenciador de dependências Maven
+└── README.md
 ```
 
 ---
 
-## 🧪 Cenário de Teste
+## 🛠️ Tecnologias Utilizadas
 
-O cenário `Validar retorno de todas as raças de cachorro` executa os seguintes passos:
-
-1. Envia uma requisição GET para `https://dog.ceo/api/breeds/list/all`
-2. Valida que o status da resposta é `200`
-3. Compara cada uma das raças e sub-raças retornadas com as do DataTable.
-
-Exemplo de entrada no `listar_racas.feature`:
-
-```gherkin
-Cenário: Validar retorno de todas as raças de cachorro
-  Quando envio uma requisição GET para "/api/breeds/list/all"
-  Então o status da resposta deve ser 200
-  E a resposta deve conter as seguintes raças:
-    | raças             |
-    | bulldog/english   |
-    | poodle/miniature  |
-    | akita             |
-    | labrador          |
-    | spaniel/cocker    |
-    ...
-```
+- ✅ **Java 21**
+- ✅ **JUnit Platform Suite 5**
+- ✅ **Cucumber 7.14.0**
+- ✅ **RestAssured 5.3.0**
+- ✅ **Log4j 2**
+- ✅ **Jenkins 2.510+**
 
 ---
 
-## ▶️ Como executar o projeto
+## 🚀 Executando os Testes
 
-### 1. Clone o repositório
+### Via terminal (Maven)
 
 ```bash
-git clone https://github.com/seu-usuario/teste-api-dog-ceo.git
-cd teste-api-dog-ceo
+mvn clean verify
 ```
 
-### 2. Instale as dependências (Maven)
+### Executando por tag
 
 ```bash
-mvn clean install
-```
-
-> Ou com Gradle:
-
-```bash
-./gradlew build
-```
-
-### 3. Execute os testes
-
-```bash
-mvn test
+mvn test -Dcucumber.filter.tags="Regressivo"
 ```
 
 ---
 
-## 📦 Dependências principais (Maven)
+## 🧪 TestRunner - Configuração
 
-```xml
-<dependencies>
-  <dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-java</artifactId>
-    <version>7.14.0</version>
-  </dependency>
-  <dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>7.14.0</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-    <version>5.3.1</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.13.2</version>
-    <scope>test</scope>
-  </dependency>
-</dependencies>
+```java
+@Suite
+@SelectClasspathResource("features")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "steps")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, json:target/cucumber-report.json, html:target/cucumber-report.html")
+@ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelcase")
+@IncludeTags("@Regressivo")
+public class TestRunner {}
 ```
 
 ---
 
-## 📝 Considerações
+## 📊 Relatórios Gerados
 
-- O projeto pode ser complementado com testes negativos, testes por sub-raça, e testes de performance.
+- `target/cucumber-report.html` → HTML padrão do Cucumber
+- `target/cucumber-html-reports/` → HTML customizado via Maven Plugin
+- `target/allure-report/` → Relatório interativo do Allure
 
 ---
 
-## 📌 Autor
+## ⚙️ Jenkins CI - Pipeline Declarativa
 
-Projeto criado por: Fredi Roldan  
-📧 frediroldan@gmail.com
+- Clone do projeto via Git
+- Build e testes via Maven
+- Relatórios JUnit + HTML + Allure
+
+```groovy
+pipeline {
+    agent any
+    tools {
+        jdk 'JDK-21'
+        maven 'Maven-3.9.5'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/frediroldan/agibank-dog-api-automation.git', branch: 'main'
+            }
+        }
+        stage('Build & Test') {
+            steps {
+                script {
+                    if (isUnix()) { sh 'mvn clean install' } else { bat 'mvn clean install' }
+                }
+            }
+        }
+        stage('Publicar Relatórios') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: 'target/cucumber-html-reports/**', fingerprint: true
+            }
+        }
+        
+    }
+    post {
+        always { echo '🔚 Pipeline finalizada' }
+        success { echo '✅ Pipeline executada com sucesso!' }
+        failure { echo '❌ Falha na execução da pipeline.' }
+    }
+}
+```
+
+---
+
+## ✅ Resultados de Testes
+
+- 🟢 Raças retornadas com sucesso
+- 🟢 Imagens de raças com URLs válidas
+- 🟢 Respostas com status HTTP corretos
+- 🟢 Imagens distintas e com formatos esperados
+- 🔴 Tratamento de erros em endpoints inválidos
+- 🔄 Testes randomizados com persistência de imagens
+
+---
+
+## 📎 Observações Finais
+
+- Pipeline ajustada para execução em **Windows** e Unix/Linux via Stage da Pipeline.
+- Relatórios funcionais com **Cucumber** report.
+
+
+
