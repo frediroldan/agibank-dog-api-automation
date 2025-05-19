@@ -44,4 +44,10 @@ pipeline {
                 echo '❌ Falha na execução da pipeline.'
             }
         }
+
+        post {
+          always {
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+          }
+        }
     }
