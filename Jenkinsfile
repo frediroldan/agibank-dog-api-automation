@@ -31,6 +31,13 @@ pipeline {
                     archiveArtifacts artifacts: 'target/cucumber-report.html', fingerprint: true
                 }
             }
+
+            stage('Allure Report') {
+                steps {
+                    allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                }
+            }
+
         }
 
         post {
@@ -43,11 +50,5 @@ pipeline {
             failure {
                 echo '❌ Falha na execução da pipeline.'
             }
-        }
-
-        post {
-          always {
-            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-          }
         }
     }
