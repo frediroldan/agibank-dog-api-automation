@@ -22,4 +22,3 @@ target/
 *.swp
 *.bak
 /.idea/
-/allure-results/
