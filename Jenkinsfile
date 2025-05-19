@@ -19,15 +19,17 @@ pipeline {
         }
 
         stage('Build & Test') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn clean verify'
-                    } else {
-                        bat 'mvn clean verify'
-                    }
-                }
+          steps {
+            script {
+              if (isUnix()) {
+                sh 'mvn clean verify'
+                sh 'ls -lah target'
+              } else {
+                bat 'mvn clean verify'
+                bat 'dir target'
+              }
             }
+          }
         }
 
         stage('Publicar Relatórios') {
