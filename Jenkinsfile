@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        ALLURE_RESULTS = 'allure-results'
+        ALLURE_RESULTS = 'target/allure-results'
         CUCUMBER_REPORT = 'target/cucumber-html-reports'
     }
 
