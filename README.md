@@ -72,8 +72,7 @@ public class TestRunner {}
 
 ## 📊 Relatórios Gerados
 
-- `target/cucumber-report.html` → HTML padrão do Cucumber
-- `target/cucumber-html-reports/` → HTML customizado via Maven Plugin
+- `target/cucumber-report.html` → HTML padrão do Cucumber Reports
 
 ---
 
