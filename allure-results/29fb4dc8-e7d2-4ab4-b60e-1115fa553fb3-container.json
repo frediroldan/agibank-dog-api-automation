@@ -1,0 +1,1 @@
+{"uuid":"29fb4dc8-e7d2-4ab4-b60e-1115fa553fb3","name":"Cenario: requisicao com endpoint incorreto deve retornar erro 404","children":["2770ec66-4260-45b6-a068-2bcd2efbab18"],"befores":[],"afters":[],"start":1747628056817,"stop":1747628057264}
