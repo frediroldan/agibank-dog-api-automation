@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.dogapi</groupId>
-  <artifactId>dog-api-automation</artifactId>
+  <artifactId>agibank-dog-api-automation</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -70,31 +70,31 @@
   </dependencies>
 
   <build>
-  <plugins>
-    <!-- Plugin para executar os testes -->
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <version>3.1.2</version>
-      <configuration>
-        <useModulePath>false</useModulePath>
-        <includes>
-          <include>**/Test*.java</include>
-        </includes>
-      </configuration>
-    </plugin>
+    <plugins>
+      <!-- Plugin para executar os testes -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+          <includes>
+            <include>**/Test*.java</include>
+          </includes>
+        </configuration>
+      </plugin>
 
-    <!-- Plugin para gerar o Allure Report -->
-    <plugin>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-maven</artifactId>
-      <version>2.11.2</version>
-      <configuration>
-        <reportVersion>2.20.1</reportVersion>
-        <resultsDirectory>target/allure-results</resultsDirectory>
-        <reportDirectory>target/allure-report</reportDirectory>
-      </configuration>
-    </plugin>
-  </plugins>
+      <!-- Plugin para gerar o Allure Report -->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.11.2</version>
+        <configuration>
+          <reportVersion>2.20.1</reportVersion>
+          <resultsDirectory>target/allure-results</resultsDirectory>
+          <reportDirectory>target/allure-report</reportDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>

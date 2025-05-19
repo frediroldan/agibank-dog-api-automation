@@ -4,7 +4,6 @@ import org.junit.platform.suite.api.*;
 
 import static io.cucumber.core.options.Constants.*;
 
-
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features") // Diretório onde estão seus arquivos .feature

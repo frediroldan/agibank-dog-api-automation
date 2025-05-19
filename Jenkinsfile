@@ -25,7 +25,7 @@ pipeline {
                 }
             }
 
-            stage('Publicar Relatórios') {
+            stage('Publicar RelatÃ³rios') {
                 steps {
                     junit 'target/surefire-reports/*.xml'
                     archiveArtifacts artifacts: 'target/cucumber-html-reports/**', fingerprint: true
@@ -45,10 +45,10 @@ pipeline {
                 echo 'Pipeline finalizada'
             }
             success {
-                echo '✅ Pipeline executada com sucesso!'
+                echo 'âœ… Pipeline executada com sucesso!'
             }
             failure {
-                echo '❌ Falha na execução da pipeline.'
+                echo 'âŒ Falha na execuÃ§Ã£o da pipeline.'
             }
         }
     }
