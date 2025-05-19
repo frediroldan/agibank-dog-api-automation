@@ -19,11 +19,11 @@ dog-api-automation/
 │           └── features/       # Cenários BDD em Gherkin
 │
 ├── target/
-│   ├── cucumber-html-reports/ # Relatórios personalizados
+│   ├── cucumber-reports/       # Relatórios personalizados
 │   
 │
-├── Jenkinsfile                # Pipeline declarativa CI/CD
-├── pom.xml                    # Gerenciador de dependências Maven
+├── Jenkinsfile                 # Pipeline declarativa CI/CD
+├── pom.xml                     # Gerenciador de dependências Maven
 └── README.md
 ```
 
@@ -79,42 +79,72 @@ public class TestRunner {}
 
 ## ⚙️ Jenkins CI - Pipeline Declarativa
 
-- Clone do projeto via Git
+- Clone do projeto via Git: https://github.com/frediroldan/agibank-dog-api-automation.git
 - Build e testes via Maven
-- Relatórios JUnit + HTML + Allure
+- Relatórios JUnit  + Cucumber Reports
 
 ```groovy
 pipeline {
     agent any
+
     tools {
-        jdk 'JDK-21'
-        maven 'Maven-3.9.5'
+        jdk 'JDK-21'         // Nome do JDK configurado no Jenkins
+        maven 'Maven-3.9.5'  // Nome do Maven configurado no Jenkins
     }
+
+    environment {
+        CUCUMBER_REPORT = 'target'
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/frediroldan/agibank-dog-api-automation.git', branch: 'main'
             }
         }
+
         stage('Build & Test') {
             steps {
                 script {
-                    if (isUnix()) { sh 'mvn clean install' } else { bat 'mvn clean install' }
+                    if (isUnix()) {
+                        sh 'mvn clean verify'
+                        sh 'ls -lah target'
+                    } else {
+                        bat 'mvn clean verify'
+                        bat 'dir target'
+                    }
                 }
             }
         }
+
         stage('Publicar Relatórios') {
             steps {
-                junit 'target/surefire-reports/*.xml'
-                archiveArtifacts artifacts: 'target/cucumber-html-reports/**', fingerprint: true
+                script {
+                    junit 'target/surefire-reports/*.xml'
+
+                    def reportPath = "${env.CUCUMBER_REPORT}"
+                    def exists = fileExists(reportPath)
+                    if (exists) {
+                        archiveArtifacts artifacts: 'target/**', fingerprint: true
+                        echo "📄 Cucumber HTML report arquivado com sucesso!"
+                    } else {
+                        echo "⚠️ Relatório HTML não encontrado em: ${reportPath}"
+                    }
+                }
             }
         }
-        
     }
+
     post {
-        always { echo '🔚 Pipeline finalizada' }
-        success { echo '✅ Pipeline executada com sucesso!' }
-        failure { echo '❌ Falha na execução da pipeline.' }
+        always {
+            echo '🔚 Pipeline finalizada'
+        }
+        success {
+            echo '✅ Pipeline executada com sucesso!'
+        }
+        failure {
+            echo '❌ Falha na execução da pipeline.'
+        }
     }
 }
 ```
@@ -134,8 +164,8 @@ pipeline {
 
 ## 📎 Observações Finais
 
-- Pipeline ajustada para execução em **Windows** e Unix/Linux via Stage da Pipeline.
-- Relatórios funcionais com **Cucumber** report.
+- Pipeline ajustada para execução em **Windows** e **Unix/Linux** via Stage da Pipeline.
+- Relatórios funcionais com **Cucumber** Report.
 
 
 

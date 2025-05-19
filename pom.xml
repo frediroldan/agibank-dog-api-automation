@@ -35,7 +35,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit Platform Suite (opcional para organizaĆ§Ć£o de testes) -->
+        <!-- JUnit Platform Suite (opcional para organização de testes) -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
