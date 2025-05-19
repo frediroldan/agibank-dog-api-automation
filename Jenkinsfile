@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK-21'       // Nome do JDK configurado no Jenkins
+        jdk 'JDK-21'         // Nome do JDK configurado no Jenkins
         maven 'Maven-3.9.5'  // Nome do Maven configurado no Jenkins
     }
 
@@ -23,13 +23,14 @@ pipeline {
                     }
                 }
             }
+        }
 
        stage('Publicar Relatórios') {
                    steps {
                        junit 'target/surefire-reports/*.xml'
                    }
                }
-        }
+       }
 
     post {
             always {
@@ -43,4 +44,3 @@ pipeline {
             }
         }
 }
-
