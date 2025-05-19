@@ -84,28 +84,6 @@
         </configuration>
       </plugin>
 
-      <plugin>
-        <groupId>net.masterthought</groupId>
-        <artifactId>maven-cucumber-reporting</artifactId>
-        <version>5.7.4</version>
-        <executions>
-          <execution>
-            <id>cucumber-reports</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <projectName>Dog API Tests</projectName>
-              <jsonFiles>
-                <param>${project.build.directory}/cucumber-report.json</param>
-              </jsonFiles>
-              <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
       <!-- Plugin para gerar o Allure Report -->
       <plugin>
         <groupId>io.qameta.allure</groupId>
