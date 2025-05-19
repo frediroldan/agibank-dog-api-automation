@@ -3,7 +3,7 @@
 #Autor: Fredi Roldan
 #Data: 15/05/2025
 
-@BreedImages #@Regressivo
+@BreedImages @Regressivo
 Funcionalidade: Validar imagens por raca
 
   Cenario: Validar imagens da raca hound-afghan
