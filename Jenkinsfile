@@ -7,33 +7,33 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/frediroldan/agibank-dog-api-automation.git', branch: 'main'
+            stage('Checkout') {
+                steps {
+                    git url: 'https://github.com/frediroldan/agibank-dog-api-automation.git', branch: 'main'
+                }
             }
-        }
 
-        stage('Build & Test') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn clean install'
-                    } else {
-                        bat 'mvn clean install'
+            stage('Build & Test') {
+                steps {
+                    script {
+                        if (isUnix()) {
+                            sh 'mvn clean install'
+                        } else {
+                            bat 'mvn clean install'
+                        }
                     }
+                }
+            }
+
+            stage('Publicar Relatórios') {
+                steps {
+                    junit 'target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'target/cucumber-report.html', fingerprint: true
                 }
             }
         }
 
-       stage('Publicar Relatórios') {
-            steps {
-                   junit 'target/surefire-reports/*.xml'
-                   archiveArtifacts artifacts: 'target/cucumber-report.html', fingerprint: true
-            }
-
-       }
-
-    post {
+        post {
             always {
                 echo 'Pipeline finalizada'
             }
@@ -45,4 +45,3 @@ pipeline {
             }
         }
     }
-}
